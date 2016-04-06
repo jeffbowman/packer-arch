@@ -84,9 +84,37 @@
             "script": "scripts/install-virtualbox.sh"
         },
         {
+            "type": "file",
+            "source": "resources/xfce.config.tar.gz",
+            "destination": "/tmp/xfce.config.tar.gz"
+        },
+        {
+            "type": "file",
+            "source": "resources/p.txt",
+            "destination": "/tmp/p.txt"
+        },
+        {
+            "type": "file",
+            "source": "resources/pkgdiff.sh",
+            "destination": "/tmp/pkgdiff.sh"
+        },
+        {
+            "type": "file",
+            "source": "resources/AnypointStudio-for-linux-64bit-5.4.3-201603290717.tar.gz",
+            "destination": "/tmp/AnypointStudio.tar.gz"
+        },
+        {
+            "type": "file",
+            "source": "resources/AnypointStudio.desktop",
+            "destination": "/home/vagrant/.local/share/applications"
+        },
+        {
             "type": "shell",
             "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-            "script": "scripts/cleanup.sh"
+            "scripts": [
+              "scripts/devenv.sh",
+              "scripts/cleanup.sh"
+            ]
         }
     ],
     "post-processors": [
