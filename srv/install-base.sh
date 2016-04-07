@@ -31,8 +31,6 @@ echo "==> mounting ${ROOT_PARTITION} to ${TARGET_DIR}"
 /usr/bin/mount -o noatime,errors=remount-ro ${ROOT_PARTITION} ${TARGET_DIR}
 
 echo '==> bootstrapping the base installation'
-mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.save
-/usr/bin/rankmirrors -n 0 /etc/pacman.d/mirrorlist.save | /usr/bin/tee /etc/pacman.d/mirrorlist
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel
 /usr/bin/arch-chroot ${TARGET_DIR} pacman -S --noconfirm gptfdisk openssh syslinux
 /usr/bin/arch-chroot ${TARGET_DIR} syslinux-install_update -i -a -m

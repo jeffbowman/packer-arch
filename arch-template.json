@@ -7,28 +7,6 @@
     },
     "builders": [
         {
-            "type": "parallels-iso",
-            "parallels_tools_flavor": "lin",
-            "parallels_tools_mode": "attach",
-            "guest_os_type": "linux-2.6",
-            "iso_url": "{{ user `iso_url` }}",
-            "iso_checksum": "{{ user `iso_checksum` }}",
-            "iso_checksum_type": "{{ user `iso_checksum_type` }}",
-            "http_directory": "srv",
-            "boot_wait": "5s",
-            "boot_command": [
-                "<enter><wait10><wait10>",
-                "/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/install-base.sh<enter><wait5>",
-                "/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>",
-                "/usr/bin/bash ./install-base.sh<enter>"
-            ],
-            "disk_size": 20480,
-            "ssh_username": "vagrant",
-            "ssh_password": "vagrant",
-            "ssh_timeout": "{{ user `ssh_timeout` }}",
-            "shutdown_command": "sudo systemctl start poweroff.timer"
-        },
-        {
             "type": "virtualbox-iso",
             "iso_url": "{{ user `iso_url` }}",
             "iso_checksum": "{{ user `iso_checksum` }}",
@@ -72,12 +50,6 @@
     ],
     "provisioners": [
         {
-            "only": ["parallels-iso"],
-            "type": "shell",
-            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-            "script": "scripts/install-parallels.sh"
-        },
-        {
             "only": ["virtualbox-iso"],
             "type": "shell",
             "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
@@ -85,28 +57,27 @@
         },
         {
             "type": "file",
-            "source": "resources/xfce.config.tar.gz",
-            "destination": "/tmp/xfce.config.tar.gz"
-        },
-        {
-            "type": "file",
             "source": "resources/p.txt",
-            "destination": "/tmp/p.txt"
+            "destination": "/tmp/p.txt",
+            "pause_before": "1s"
         },
         {
             "type": "file",
             "source": "resources/pkgdiff.sh",
-            "destination": "/tmp/pkgdiff.sh"
-        },
-        {
-            "type": "file",
-            "source": "resources/AnypointStudio-for-linux-64bit-5.4.3-201603290717.tar.gz",
-            "destination": "/tmp/AnypointStudio.tar.gz"
+            "destination": "/tmp/pkgdiff.sh",
+            "pause_before": "1s"
         },
         {
             "type": "file",
             "source": "resources/AnypointStudio.desktop",
-            "destination": "/home/vagrant/.local/share/applications"
+            "destination": "/tmp/AnypointStudio.desktop",
+            "pause_before": "1s"
+        },
+        {
+            "type": "file",
+            "source": "resources/AnypointStudio.tar.gz",
+            "destination": "/home/vagrant/AnypointStudio.tar.gz",
+            "pause_before": "1s"
         },
         {
             "type": "shell",
@@ -114,13 +85,34 @@
             "scripts": [
               "scripts/devenv.sh",
               "scripts/cleanup.sh"
-            ]
+            ],
+            "pause_before": "10s"
         }
     ],
     "post-processors": [
-        {
+        [{
             "type": "vagrant",
-            "output": "output/packer_arch_{{ .Provider }}.box"
-        }
+            "output": "output/packer_arch_mule_dev_desktop_{{ .Provider }}.box"
+        },
+        {
+            "type": "atlas",
+            "only": ["virtualbox-iso"],
+            "artifact": "jefftbowman/mule-dev-desktop",
+            "artifact_type": "vagrant.box",
+            "metadata": {
+                "provider": "virtualbox",
+                "version": "0.0.1"
+            }
+        },
+        {
+            "type": "atlas",
+            "only": ["vmware-iso"],
+            "artifact": "jefftbowman/mule-dev-desktop",
+            "artifact_type": "vagrant.box",
+            "metadata": {
+                "provider": "vmware_desktop",
+                "version": "0.0.1"
+            }
+        }]
     ]
 }

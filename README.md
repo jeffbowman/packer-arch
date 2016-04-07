@@ -1,3 +1,21 @@
+Mule Development Desktop
+========================
+
+Based on [packer-arch](https://github.com/elasticdog/packer-arch) base
+box, this box has been enhanced to include the XFCE desktop
+environment and development tools for working with Mulesoft's Mule ESB
+product including AnypointStudio.
+
+Configuration
+-------------
+
+When using this box, the intention is to mount the directory where
+your source code is on your host within the box. See the Vagrantfile
+comments for how to do this.
+
+See below for the original README; additionally kind regards to the
+original author: Aaron Bull Schaefer <aaron@elasticdog.com>
+
 Packer Arch
 ===========
 
