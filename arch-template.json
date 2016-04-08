@@ -92,7 +92,7 @@
     "post-processors": [
         [{
             "type": "vagrant",
-            "output": "output/packer_arch_mule_dev_desktop_{{ .Provider }}.box"
+            "output": "packer_{{ .BuildName }}_{{ .Provider }}.box"
         },
         {
             "type": "atlas",
@@ -101,7 +101,7 @@
             "artifact_type": "vagrant.box",
             "metadata": {
                 "provider": "virtualbox",
-                "version": "0.1.1"
+                "version": "0.2.0"
             }
         },
         {
@@ -111,7 +111,7 @@
             "artifact_type": "vagrant.box",
             "metadata": {
                 "provider": "vmware_desktop",
-                "version": "0.1.2"
+                "version": "0.1.3"
             }
         }]
     ]
