@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=AnypointStudio
 Comment=AnypointStudio 5.4.3 from Mulesoft
-Exec=/home/vagrant/Tools/AnpointStudio/AnypointStudio
+Exec=/home/vagrant/Tools/AnypointStudio/AnypointStudio
 Icon=/home/vagrant/Tools/AnypointStudio/icon.xpm
 Categories=Application;Development;Java;IDE
 Version=1.0

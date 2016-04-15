@@ -99,26 +99,6 @@
         [{
             "type": "vagrant",
             "output": "packer_{{ .BuildName }}_{{ .Provider }}.box"
-        },
-        {
-            "type": "atlas",
-            "only": ["virtualbox-iso"],
-            "artifact": "jefftbowman/mule-dev-desktop",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "virtualbox",
-                "version": "0.2.1"
-            }
-        },
-        {
-            "type": "atlas",
-            "only": ["vmware-iso"],
-            "artifact": "jefftbowman/mule-dev-desktop",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "provider": "vmware_desktop",
-                "version": "0.1.4"
-            }
         }]
     ]
 }

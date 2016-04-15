@@ -45,6 +45,9 @@ chmod +x /tmp/pkgdiff.sh
 /tmp/pkgdiff.sh /tmp/p.txt
 /usr/bin/cat to_install | sudo -u vagrant /usr/bin/xargs /usr/bin/pacaur -S --noconfirm --noedit
 
+# install editors
+sudo -u vagrant pacaur -S sublime-text atom-editor-bin --noedit --noconfirm
+
 # enable network manager and graphical login manager
 systemctl enable NetworkManager
 systemctl enable lightdm
@@ -59,3 +62,6 @@ sudo -u vagrant cp /tmp/AnypointStudio.desktop /home/vagrant/.local/share/applic
 sudo -u vagrant chmod +x /home/vagrant/.local/share/applications/AnypointStudio.desktop
 
 cd
+
+# copy default panel to xdg directory
+cp /tmp/default.xml /etc/xdg/xfce4/panel/
