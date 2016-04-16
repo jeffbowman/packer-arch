@@ -34,6 +34,8 @@
         <value type="int" value="14"/>
         <value type="int" value="16"/>
         <value type="int" value="17"/>
+        <value type="int" value="18"/>
+        <value type="int" value="19"/>
       </property>
     </property>
   </property>
@@ -84,6 +86,18 @@
             <value type="string" value="emacs.desktop"/>
             <value type="string" value="atom.desktop"/>
             <value type="string" value="sublime-text.desktop"/>
+            <value type="string" value="gvim.desktop"/>
+        </property>
+    </property>
+    <property name="plugin-18" type="string" value="launcher">
+        <property name="items" type="array">
+            <value type="string" value="gpk-update-viewer.desktop"/>
+            <value type="string" value="gpk-application.desktop"/>
+        </property>
+    </property>
+    <property name="plugin-19" type="string" value="launcher">
+        <property name="items" type="array">
+            <value type="string" value="keepass.desktop"/>
         </property>
     </property>
   </property>
