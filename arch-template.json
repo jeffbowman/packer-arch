@@ -51,12 +51,6 @@
     ],
     "provisioners": [
         {
-            "only": ["parallels-iso"],
-            "type": "shell",
-            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-            "script": "scripts/install-parallels.sh"
-        },
-        {
             "only": ["virtualbox-iso"],
             "type": "shell",
             "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
