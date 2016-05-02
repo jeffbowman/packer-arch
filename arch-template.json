@@ -1,7 +1,7 @@
 {
     "variables": {
-        "iso_url": "https://mirrors.kernel.org/archlinux/iso/2016.03.01/archlinux-2016.03.01-dual.iso",
-        "iso_checksum": "992f046c3fb5afecaf8734126f2a095f437ca9b8",
+        "iso_url": "https://mirrors.kernel.org/archlinux/iso/2016.05.01/archlinux-2016.05.01-dual.iso",
+        "iso_checksum_url": "https://mirrors.kernel.org/archlinux/iso/2016.05.01/sha1sums.txt",
         "iso_checksum_type": "sha1",
         "ssh_timeout": "20m"
     },
@@ -9,7 +9,7 @@
         {
             "type": "virtualbox-iso",
             "iso_url": "{{ user `iso_url` }}",
-            "iso_checksum": "{{ user `iso_checksum` }}",
+            "iso_checksum": "{{ user `iso_checksum_url` }}",
             "iso_checksum_type": "{{ user `iso_checksum_type` }}",
             "guest_os_type": "ArchLinux_64",
             "guest_additions_mode": "disable",
@@ -26,12 +26,13 @@
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
             "ssh_timeout": "{{ user `ssh_timeout` }}",
-            "shutdown_command": "sudo systemctl start poweroff.timer"
+            "shutdown_command": "sudo systemctl start poweroff.timer",
+            "headless" : "{{ user `headless`}}"
         },
         {
             "type": "vmware-iso",
             "iso_url": "{{ user `iso_url` }}",
-            "iso_checksum": "{{ user `iso_checksum` }}",
+            "iso_checksum_url": "{{ user `iso_checksum_url` }}",
             "iso_checksum_type": "{{ user `iso_checksum_type` }}",
             "http_directory": "srv",
             "boot_wait": "5s",
